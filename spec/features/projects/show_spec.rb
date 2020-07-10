@@ -44,12 +44,18 @@ RSpec.describe "Project's show page" do
 
   it "should display a form to add an existing contestant to the project" do
     visit "/projects/#{@rug.id}"
+		expect(page).to have_content("Number of contestants: 1")
     fill_in :contestant_id, with: @contestant_2.id
     click_on "Add Contestant To Project"
     expect(current_path).to eq("/projects/#{@rug.id}")
     expect(page).to have_content("Number of contestants: 2")
     visit "/contestants"
-    expect(page).to have_content(@rug.name)
+
+		within(".contestants-#{@contestant_2.id}") do
+			expect(page).to have_content(@rug.name)
+			expect(page).to have_content(@litfit.name)
+    	expect(page).to have_content(@leather.name)
+		end
   end
 
 	# it "it cannot add a contestant to the project if contestant id does not exist" do

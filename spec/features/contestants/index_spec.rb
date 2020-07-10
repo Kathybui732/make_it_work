@@ -13,28 +13,15 @@ RSpec.describe "Contestants index page" do
 
   it "should display a list of all contestant names and the projects they have been on" do
     visit "/contestants"
-		within("#contestants-#{@contestant_1.id}") do
+		within(".contestants-#{@contestant_1.id}") do
 			expect(page).to have_content(@contestant_1.name)
 			expect(page).to have_content(@litfit.name)
 			expect(page).to have_content(@rug.name)
 		end
 
-		within("#contestants-#{@contestant_2.id}") do
+		within(".contestants-#{@contestant_2.id}") do
 	    expect(page).to have_content(@contestant_2.name)
 	    expect(page).to have_content(@leather.name)
 		end
   end
 end
-#
-# User Story 2 of 3
-# ​
-# As a visitor,
-# When I visit the contestants index page ("/contestants")
-# I see a list of names of all the contestants
-# And under each contestants name I see a list of the projects (names) that they've been on
-# ​
-# (e.g.   Kentaro Kameyama
-#         Projects: Litfit, Rug Tuxedo
-# ​
-#         Jay McCarroll
-#         Projects: LeatherFeather)
