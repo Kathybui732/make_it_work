@@ -13,12 +13,16 @@ RSpec.describe "Contestants index page" do
 
   it "should display a list of all contestant names and the projects they have been on" do
     visit "/contestants"
-    expect(page).to have_content(@contestant_1.name)
-    expect(page).to have_content(@litfit.name)
-    expect(page).to have_content(@rug.name)
-    expect(page).to have_content(@contestant_1.name)
-    expect(page).to have_content(@litfit.name)
-    expect(page).to have_content(@leather.name)
+		within("#contestants-#{@contestant_1.id}") do
+			expect(page).to have_content(@contestant_1.name)
+			expect(page).to have_content(@litfit.name)
+			expect(page).to have_content(@rug.name)
+		end
+
+		within("#contestants-#{@contestant_2.id}") do
+	    expect(page).to have_content(@contestant_2.name)
+	    expect(page).to have_content(@leather.name)
+		end
   end
 end
 #
