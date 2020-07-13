@@ -49,8 +49,8 @@ RSpec.describe "Project's show page" do
     click_on "Add Contestant To Project"
     expect(current_path).to eq("/projects/#{@rug.id}")
     expect(page).to have_content("Number of contestants: 2")
-    visit "/contestants"
 
+    visit "/contestants"
 		within(".contestants-#{@contestant_2.id}") do
 			expect(page).to have_content(@rug.name)
 			expect(page).to have_content(@litfit.name)
@@ -58,11 +58,11 @@ RSpec.describe "Project's show page" do
 		end
   end
 
-	# it "it cannot add a contestant to the project if contestant id does not exist" do
-	# 	visit "/projects/#{@rug.id}"
-	# 	fill_in :contestant_id, with: 123
-	# 	click_on "Add Contestant To Project"
-	# 	expect(current_path).to eq("/projects/#{@rug.id}")
-	# 	expect(page).to have_content("Invalid contestant id! Try again!")
-	# end
+	it "it cannot add a contestant to the project if contestant id does not exist" do
+		visit "/projects/#{@rug.id}"
+		fill_in :contestant_id, with: 1235
+		click_on "Add Contestant To Project"
+		expect(current_path).to eq("/projects/#{@rug.id}")
+		expect(page).to have_content("Invalid contestant id! Try again!")
+	end
 end

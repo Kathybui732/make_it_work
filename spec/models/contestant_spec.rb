@@ -30,7 +30,9 @@ RSpec.describe Contestant, type: :model do
     it {should have_many(:projects).through(:contestant_projects)}
   end
 
-  it "#average_years" do
-    expect(Contestant.average_years).to eq(10.0)
+  describe "methods" do
+    it "#average_years" do
+      expect(Contestant.average_years).to eq(10.0)
+    end
   end
 end
